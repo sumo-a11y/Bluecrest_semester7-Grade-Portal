@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bluecrest University Portal{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 24px;
+            min-height: 100vh;
+            background: linear-gradient(rgba(240,248,255,0.90), rgba(240,248,255,0.90)),
+                        url("{% static 'image2.jpeg' %}") no-repeat center center fixed;
+            background-size: cover;
+            color: #0d2c5b;
+        }
+        nav {
+            margin-bottom: 18px;
+        }
+        nav a {
+            margin-right: 14px;
+            color: #0f4f8a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid rgba(15, 79, 138, 0.25);
+            margin: 24px 0;
+        }
+        h1 {
+            color: #0b3a72;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            background: rgba(255,255,255,0.95);
+        }
+        th, td {
+            border: 1px solid #aac4e5;
+            padding: 8px;
+        }
+        th {
+            background: #1f77d7;
+            color: #fff;
+        }
+        td {
+            color: #1c355d;
+        }
+        .errorlist {
+            color: #b00020;
+            margin: 0 0 10px;
+        }
+        .actions {
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="{% url 'students:student-list' %}">Students</a>
+    <a href="{% url 'students:department-list' %}">Departments</a>
+    <a href="{% url 'students:semester-list' %}">Semesters</a>
+    <a href="{% url 'students:course-list' %}">Courses</a>
+    <a href="{% url 'students:registration-list' %}">Registrations</a>
+</nav>
+<hr>
+<h1>{% block heading %}Bluecrest University Portal{% endblock %}</h1>
+{% block content %}{% endblock %}
+</body>
+</html>

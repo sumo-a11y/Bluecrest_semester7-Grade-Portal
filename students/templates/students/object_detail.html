@@ -1,0 +1,18 @@
+{% extends 'students/base.html' %}
+{% load model_extras %}
+
+{% block title %}{{ object }}{% endblock %}
+{% block heading %}{{ view.model._meta.verbose_name|capfirst }} details{% endblock %}
+
+{% block content %}
+<ul>
+    {% for field in view.model._meta.fields %}
+        <li><strong>{{ field.verbose_name|capfirst }}:</strong> {{ object|attr:field.name }}</li>
+    {% endfor %}
+</ul>
+<div class="actions">
+    <a href="{% url 'students:'|add:view.model._meta.model_name|add:'-update' object.pk %}">Edit</a>
+    <a href="{% url 'students:'|add:view.model._meta.model_name|add:'-delete' object.pk %}">Delete</a>
+    <a href="{% url 'students:'|add:view.model._meta.model_name|add:'-list' %}">Back to list</a>
+</div>
+{% endblock %}

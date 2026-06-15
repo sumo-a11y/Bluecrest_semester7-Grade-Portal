@@ -1,0 +1,41 @@
+{% extends 'students/base.html' %}
+{% load model_extras %}
+
+{% block title %}{{ view.model._meta.verbose_name_plural|capfirst }}{% endblock %}
+{% block heading %}{{ view.model._meta.verbose_name_plural|capfirst }}{% endblock %}
+
+{% block content %}
+<div class="actions">
+    <a href="{% url 'students:'|add:view.model._meta.model_name|add:'-create' %}">Create new {{ view.model._meta.verbose_name }}</a>
+</div>
+{% if object_list %}
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            {% for field in view.model._meta.fields|slice:':4' %}
+            <th>{{ field.verbose_name|capfirst }}</th>
+            {% endfor %}
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            {% for field in view.model._meta.fields|slice:':4' %}
+            <td>{{ object|attr:field.name }}</td>
+            {% endfor %}
+            <td>
+                <a href="{{ object.get_absolute_url }}">View</a>
+                <a href="{% url 'students:'|add:view.model._meta.model_name|add:'-update' object.pk %}">Edit</a>
+                <a href="{% url 'students:'|add:view.model._meta.model_name|add:'-delete' object.pk %}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No {{ view.model._meta.verbose_name_plural }} found yet.</p>
+{% endif %}
+{% endblock %}

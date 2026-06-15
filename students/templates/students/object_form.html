@@ -1,0 +1,20 @@
+{% extends 'students/base.html' %}
+
+{% block title %}{{ view.model._meta.verbose_name|capfirst }} Form{% endblock %}
+{% block heading %}{{ view.model._meta.verbose_name|capfirst }}{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <div class="actions">
+        <button type="submit" name="_save">Save</button>
+        <button type="submit" name="_addanother">Save and add another</button>
+        <button type="submit" name="_continue">Save and continue editing</button>
+        <a href="{% url 'students:'|add:view.model._meta.model_name|add:'-list' %}">Cancel</a>
+    </div>
+</form>
+{% endblock %}
