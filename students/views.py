@@ -7,14 +7,24 @@ from .models import Course, Department, Registration, Semester, Student
 
 class MultiButtonFormMixin:
     def get_success_url(self):
-        if '_addanother' in self.request.POST:
+        post = self.request.POST
+        action = post.get('action')
+
+        if '_addanother' in post or action == 'addanother':
             return reverse_lazy(f'students:{self.model._meta.model_name}-create')
-        if '_continue' in self.request.POST:
+        if '_continue' in post or action == 'continue':
             return reverse_lazy(
                 f'students:{self.model._meta.model_name}-update',
                 kwargs={'pk': self.object.pk}
             )
         return reverse_lazy(f'students:{self.model._meta.model_name}-list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # provide safe context variables for templates (avoid using attributes starting with underscores)
+        context['model_verbose_name'] = getattr(self.model._meta, 'verbose_name', '')
+        context['model_name'] = getattr(self.model._meta, 'model_name', '')
+        return context
 
 
 class DepartmentListView(generic.ListView):
