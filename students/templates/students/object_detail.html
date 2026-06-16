@@ -11,8 +11,8 @@
     {% endfor %}
 </ul>
 <div class="actions">
-    <a href="{% url 'students:'|add:view.model._meta.model_name|add:'-update' object.pk %}">Edit</a>
-    <a href="{% url 'students:'|add:view.model._meta.model_name|add:'-delete' object.pk %}">Delete</a>
-    <a href="{% url 'students:'|add:view.model._meta.model_name|add:'-list' %}">Back to list</a>
+    <a class="action-edit" href="{% url 'students:'|add:view.model._meta.model_name|add:'-update' object.pk %}">Edit</a>
+    <a class="action-delete" href="{% url 'students:'|add:view.model._meta.model_name|add:'-delete' object.pk %}">Delete</a>
+    <a class="action-view" href="{% url 'students:'|add:view.model._meta.model_name|add:'-list' %}">Back to list</a>
 </div>
 {% endblock %}

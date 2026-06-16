@@ -8,7 +8,7 @@
     {% csrf_token %}
     <input type="hidden" id="form-action" name="action" value="">
     {{ form.non_field_errors }}
-    <table>
+    <table class="form-table">
         {{ form.as_table }}
     </table>
     <div class="actions">

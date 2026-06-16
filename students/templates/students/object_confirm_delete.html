@@ -7,7 +7,7 @@
 <p>Are you sure you want to delete {{ object }}?</p>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Confirm delete</button>
-    <a href="{{ object.get_absolute_url }}">Cancel</a>
+    <button type="submit" class="confirm-delete">Confirm delete</button>
+    <a class="action-view" href="{{ object.get_absolute_url }}">Cancel</a>
 </form>
 {% endblock %}
