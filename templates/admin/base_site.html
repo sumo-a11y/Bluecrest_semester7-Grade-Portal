@@ -1,0 +1,99 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "BlueCrest University Administration" %}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    body {
+        background: linear-gradient(rgba(240,248,255,0.80), rgba(240,248,255,0.80)),
+                    url("{% static 'image2.jpeg' %}") no-repeat center center fixed;
+        background-size: cover;
+        color: #0d2c5b;
+    }
+    #header, .module caption, .app-list h2, .dashboard-module h2 {
+        background: rgba(15, 79, 138, 0.95) !important;
+    }
+    #header h1, #user-tools a, .module caption, .app-list h2, .dashboard-module h2 {
+        color: #fff !important;
+    }
+    #user-tools a[href$="/logout/"] {
+        display: inline-block;
+        padding-left: 0;
+        color: #fff !important;
+    }
+    .module, .dashboard-module, .app-list {
+        background: rgba(255,255,255,0.92);
+    }
+    #content-main {
+        background: rgba(255,255,255,0.92);
+    }
+    /* Replace admin icons with accessible text */
+    /* Hide inline img icons and SVGs used by the admin */
+    .dashboard-module img,
+    .module img,
+    #content img,
+    a[title] img {
+        display: none !important;
+    }
+    /* Remove CSS background images used as icons */
+    [class*="icon-"],
+    [class*="icon"],
+    .related-widget-wrapper .clearable-file-input span {
+        background-image: none !important;
+    }
+    /* Show the link title as text where an icon would appear */
+    a[title]::before {
+        content: attr(title);
+        display: inline-block;
+        margin-right: 6px;
+        font-weight: 600;
+        color: inherit;
+    }
+    /* Admin related widget link colors */
+    .related-widget-wrapper a.deletelink,
+    a.deletelink,
+    a.related-deletelink {
+        color: #c62828 !important; /* red for delete */
+        font-weight: 900;
+    }
+    .related-widget-wrapper a.changelink,
+    .related-widget-wrapper a.addlink,
+    .related-widget-wrapper a.viewlink,
+    a.changelink,
+    a.addlink,
+    a.viewlink,
+    a.related-lookup {
+        color: #111010 !important;
+        font-weight: 800;
+    }
+    /* Make Add and Change links white for better contrast */
+    a.addlink, a.changelink, .addlink, .changelink,
+    .related-widget-wrapper a.addlink, .related-widget-wrapper a.changelink {
+        color: #fff !important;
+        font-weight: 700 !important;
+        text-decoration: none !important;
+    }
+    /* Remove decorative icons/pseudo-elements used by admin links (keep text) */
+    .addlink, .changelink, .deletelink, .viewlink, .related-lookup, .addlink span, .changelink span {
+        background-image: none !important;
+        padding-left: 0 !important;
+    }
+    .addlink::before, .changelink::before, .deletelink::before, .viewlink::before, .related-lookup::before {
+        content: none !important;
+        display: none !important;
+    }
+    /* Deep black for form labels in admin */
+    label, .form-row label, .inline-related label {
+        color: #000 !important;
+        font-weight: 700;
+    }
+    /* Make admin selects darker */
+    .related-widget-wrapper select, select {
+        background: #222 !important;
+        color: #fff !important;
+        border: 1px solid #0a0909 !important;
+    }
+</style>
+{% endblock %}
